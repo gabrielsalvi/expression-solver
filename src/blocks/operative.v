@@ -1,4 +1,4 @@
-module operativo ();
+module operativo (variaveis ...);
 
     `include "components/*"
 
