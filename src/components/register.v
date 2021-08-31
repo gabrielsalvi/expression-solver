@@ -1,17 +1,18 @@
-module reg (X, LX, clk, rst, reg_X);
+module register
+(
+    input clk,
+    input rst,
+    input l,
+    input [15:0] in,
+    output reg [15:0] out
+);
 
-    input [15:0] X;
-    input LX;
-    input clk;
-    input rst;
-    output reg [15:0] reg_X;
-
-    always @(posedge clk, posedge rst)
+    always @(posedge clk or posedge rst)
     begin
-        if (LX == 1)
-            reg_X <= X;
+        if (l)
+            out <= in;
         
-        if (rst == 1)
-            reg_X <= 16'b0000000000000000;
+        if (rst)
+            out <= 16'b0000000000000000;
     end
 endmodule

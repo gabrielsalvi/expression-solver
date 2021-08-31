@@ -1,33 +1,48 @@
-`include "./components/register.v"
+`include "../components/register.v"
 
 module testbenchReg;
 
-    reg [1:0] M = 2'b00;
-    reg [15:0] in1 = 16'b1111111111111111;
-    reg [15:0] in2 = 16'b1101111111111111;
-    reg [15:0] in3 = 16'b1011111111111111;
-    reg [15:0] in4 = 16'b1000111111111111;
-    wire [15:0] MX; 
+    reg clk = 0;
+    reg rst = 0;
+    reg l = 0;
+    reg [15:0] in = 16'b1111111111111111;
+    wire [15:0] out; 
 
-    mux mux0(in1, in2, in3, in4, M, MX);
+    register reg_0 (clk, rst, l, in, out);
     
-    initial 
+    initial
     begin
         $dumpvars;
 
         #1
-        M <= 11;
+        clk <= 1;
 
-        #1
-        M <= 10;
-
-        #1
-        M <= 01;
+        #5
+        clk <= 0;
+        l <= 1;
 
         #2
-        M <= 01;
+        clk <= 1;
+
+        #2
+        clk <= 0;
+        l <= 0;
+
+        #1
+        in <= 16'b1011000111100111;
+
+        #2
+        l <= 1;
+
+        #2
+        clk <= 1;
+        
+        #5
+        rst <= 1;
+
+        #1
+        rst <= 0;
 
         $finish;  
     end
-
 endmodule
