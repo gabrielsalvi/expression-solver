@@ -1,22 +1,13 @@
 module mux 
 (
-    input [15:0] input1,
-    input [15:0] input2,
-    input [15:0] input3,
-    input [15:0] input4,
-    input [1:0] M,
-    output reg [15:0] MX
+    input [1:0] select,
+    input [15:0] a,
+    input [15:0] b,
+    input [15:0] c,
+    input [15:0] d,
+    output [15:0] out
 );
 
-    always @(M or input1 or input2 or input3 or input4) 
-    begin
-        if (M == 2'b00)
-            MX = input1;
-        else if (M == 2'b01)
-            MX = input2;
-        else if (M == 2'b10)
-            MX = input3;
-        else if (M == 2'b11)
-            MX = input4;
-    end
+    assign out = select == 2'b00 ? a : select == 2'b01 ? b : select == 2'b10 ? c : d;
+
 endmodule
