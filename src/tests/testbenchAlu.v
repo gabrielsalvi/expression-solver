@@ -1,6 +1,6 @@
 `include "../components/ula.v"
 
-module testbenchUla;
+module testbenchAlu;
 
     reg h = 0;
     reg [15:0] a = 16'b0000000001100000;
