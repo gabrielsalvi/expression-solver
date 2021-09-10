@@ -2,18 +2,18 @@ module control (
     input clk,
     input rst,
     input start,
-    output LX,
-    output LS,
-    output LH,
-    output H,
-    output [1:0] M0,
-    output [1:0] M1,
-    output [1:0] M2,
-    output completed
+    output reg LX,
+    output reg LS,
+    output reg LH,
+    output reg H,
+    output reg [1:0] M0,
+    output reg [1:0] M1,
+    output reg [1:0] M2,
+    output reg completed
 );
 
-    parameter A = 3'b000, B = 3'b001, C = 3'b010, D = 3'b011, E = 3'b100, F = 3'b101, G = 3'b110;
-    reg [3:0] state = A;
+    parameter A = 3'b000, B = 3'b001, C = 3'b010, D = 3'b011, E = 3'b100, F = 3'b101, G = 3'b110, HH = 3'b111;
+    reg [2:0] state = A;
     
     always @(posedge clk or rst) 
     begin
@@ -83,10 +83,10 @@ module control (
                     LS <= 1'b1;
                     LH <= 1'b0;
 
-                    state <= H;
+                    state <= HH;
                 end
 
-                H : begin
+                HH : begin
                     LS <= 1'b0;
                     completed <= 1'b1;
                 end
