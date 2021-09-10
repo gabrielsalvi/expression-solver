@@ -1,13 +1,13 @@
-`include "../components/ula.v"
+`include "../components/alu.v"
 
 module testbenchAlu;
 
     reg h = 0;
-    reg [15:0] a = 16'b0000000001100000;
-    reg [15:0] b = 16'b0000000000000011;
+    reg [15:0] a = 16'b0000000000001111;
+    reg [15:0] b = 16'b0000000000001111;
     wire [15:0] result;
 
-    ula ula_0 (h, a, b, result);
+    alu alu_0 (h, a, b, result);
     
     initial
     begin
@@ -22,9 +22,9 @@ module testbenchAlu;
         #2
         h <= 1;
 
-        #2
-        h <= 0;
-        a <= 16'b00000000000100;
+        // #2
+        // h <= 0;
+        // a <= 16'b00000000000100;
 
         #3
         h <= 1;

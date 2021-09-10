@@ -28,13 +28,13 @@ module operative
 
     mux mux_0 (M0, z, A, B, C, M0_out);
     mux mux_1 (M1, M0_out, Reg_X, Reg_S, Reg_H, M1_out);
-    mux mux_2 (M2, Reg_S, M0_out, Reg_S, Reg_H, M2_out);
+    mux mux_2 (M2, Reg_X, M0_out, Reg_S, Reg_H, M2_out);
 
     register reg_x (clk, rst, LX, X, Reg_X);
     register reg_s (clk, rst, LS, ula_out, Reg_S);
     register reg_h (clk, rst, LH, ula_out, Reg_H);
 
-    alu alu_0 (H, A, B, ula_out);
+    alu alu_0 (H, M2_out, M1_out, ula_out);
 
     assign result = Reg_S;
     assign zero = result ? 1'b0 : 1'b1;

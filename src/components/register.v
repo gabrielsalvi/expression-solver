@@ -7,12 +7,8 @@ module register
     output reg [15:0] out
 );
 
-    always @(posedge clk or posedge rst)
+    always @(posedge clk)
     begin
-        if (l)
-            out <= in;
-        
-        if (rst)
-            out <= 16'b0000000000000000;
+        if (l) out <= in;
     end
 endmodule
