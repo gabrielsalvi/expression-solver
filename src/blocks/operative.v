@@ -36,7 +36,7 @@ module operative
 
     alu alu_0 (H, M2_out, M1_out, ula_out);
 
-    assign result = Reg_S;
+    assign result = Reg_H;
     assign zero = result ? 1'b0 : 1'b1;
 
 endmodule

@@ -27,13 +27,16 @@ module testbench;
 
         #1
         rst <= 0;
-        start <= 1;
-        clk <= 0;
 
-        #40
+        #1
+        clk <= 1;
+
+        #2
+        start <= 1;
+
+        #20
         rst <= 1;
 
         $finish;  
     end
-
 endmodule
