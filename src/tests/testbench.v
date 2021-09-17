@@ -15,9 +15,7 @@ module testbench;
 
     expression_solver solver (clk, rst, start, X, A, B, C, result, zero, overflow, completed);
 
-    always #1 begin
-        clk <= ~clk;
-    end
+    always #1 clk <= ~clk;
 
     initial
     begin
@@ -36,6 +34,11 @@ module testbench;
 
         #20
         rst <= 1;
+
+        #5
+        rst <= 0;
+
+        #20
 
         $finish;  
     end
