@@ -12,8 +12,8 @@ module control (
     output reg completed
 );
 
-    parameter [2:0] A = 3'b000, B = 3'b001, C = 4'b010, D = 3'b011, E = 3'b100, F = 3'b101, G = 3'b110, H = 3'b111;
-    reg [2:0] state = A;
+    parameter [3:0] A = 4'b0000, B = 4'b0001, C = 4'b0010, D = 4'b0011, E = 4'b0100, F = 4'b0101, G = 4'b0110, H = 4'b0111, I = 4'b1000;
+    reg [3:0] state = A;
     
     always @(posedge clk or posedge rst) 
     begin
@@ -40,14 +40,14 @@ module control (
                     M2 <= 2'b00; 
                     OP <= 1'b1; 
                     LS <= 1'b0; 
-                    LH <= 1'b0; 
+                    LH <= 1'b0;
                     completed <= 1'b0;
 
                     state <= C;
                 end
 
                 C : begin
-                    LX <= 1'b0; 
+                    LX <= 1'b0;
                     M0 <= 2'b00; 
                     M1 <= 2'b01;
                     M2 <= 2'b00; 
@@ -100,13 +100,13 @@ module control (
 
                 G : begin
                     LX <= 1'b0;
-                    M0 <= 2'b00;
+                    M0 <= 2'b11;
                     M1 <= 2'b00;
-                    M2 <= 2'b00; 
+                    M2 <= 2'b11; 
                     OP <= 1'b0;
-                    LS <= 1'b0;
+                    LS <= 1'b1;
                     LH <= 1'b0;
-                    completed <= 1'b1;
+                    completed <= 1'b0;
 
                     state <= H;
                 end
@@ -120,6 +120,8 @@ module control (
                     LS <= 1'b0;
                     LH <= 1'b0;
                     completed <= 1'b1;
+
+                    state <= I;
                 end
             endcase
         end

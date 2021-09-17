@@ -21,10 +21,10 @@ module operative
     output [15:0] result
 );
 
-    parameter z = 16'b0000000000000000;
+    parameter z = 16'b0;
     wire [15:0] X, Reg_X, Reg_S, Reg_H, M0_out, M1_out, M2_out, ula_out;
 
-    assign X = input_X + z;
+    assign X = input_X;
 
     mux mux_0 (M0, z, A, B, C, M0_out);
     mux mux_1 (M1, M0_out, Reg_X, Reg_S, Reg_H, M1_out);
@@ -36,7 +36,7 @@ module operative
 
     alu alu_0 (H, M2_out, M1_out, ula_out);
 
-    assign result = Reg_H;
+    assign result = Reg_S;
     assign zero = result ? 1'b0 : 1'b1;
 
 endmodule
