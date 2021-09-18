@@ -5,10 +5,10 @@
 module operative 
 (
     input clk,
-    input [7:0] input_X,
-    input [15:0] A,
-    input [15:0] B,
-    input [15:0] C,
+    input signed [7:0] input_X,
+    input signed [15:0] A,
+    input signed [15:0] B,
+    input signed [15:0] C,
     input LX,
     input LS,
     input LH,
@@ -18,13 +18,14 @@ module operative
     input [1:0] M2,
     output zero,
     output overflow,
-    output [15:0] result
+    output signed [15:0] result
 );
 
-    parameter z = 16'b0000000000000000;
-    wire [15:0] X, Reg_X, Reg_S, Reg_H, M0_out, M1_out, M2_out, ula_out;
+    parameter z = 16'b0;
+    wire signed [15:0] X, Reg_X, Reg_S, Reg_H, M0_out, M1_out, M2_out, ula_out;
+    wire overflow;
 
-    assign X = input_X + z;
+    assign X = input_X;
 
     mux mux_0 (M0, z, A, B, C, M0_out);
     mux mux_1 (M1, M0_out, Reg_X, Reg_S, Reg_H, M1_out);
@@ -34,7 +35,7 @@ module operative
     register reg_s (clk, rst, LS, ula_out, Reg_S);
     register reg_h (clk, rst, LH, ula_out, Reg_H);
 
-    alu alu_0 (H, M2_out, M1_out, ula_out);
+    alu alu_0 (H, M2_out, M1_out, overflow, ula_out);
 
     assign result = Reg_H;
     assign zero = result ? 1'b0 : 1'b1;

@@ -5,8 +5,8 @@ module testbenchReg;
     reg clk = 0;
     reg rst = 0;
     reg l = 0;
-    reg [15:0] in = 16'b1111111111111111;
-    wire [15:0] out; 
+    reg signed [15:0] in = 16'b1111111111111111;
+    wire signed [15:0] out; 
 
     register reg_0 (clk, rst, l, in, out);
     
