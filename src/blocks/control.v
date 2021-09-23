@@ -5,7 +5,7 @@ module control (
     output reg LX,
     output reg LS,
     output reg LH,
-    output reg OP, // representa a operação que a ula deve executar (em outros módulos é representado por H)
+    output reg OP,
     output reg [1:0] M0,
     output reg [1:0] M1,
     output reg [1:0] M2,
