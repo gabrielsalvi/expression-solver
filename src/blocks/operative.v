@@ -34,7 +34,7 @@ module operative
     register reg_s (clk, rst, LS, ula_out, Reg_S);
     register reg_h (clk, rst, LH, ula_out, Reg_H);
 
-    alu alu_0 (H, M2_out, M1_out, ula_out);
+    alu alu_0 (H, M2_out, M1_out, overflow, ula_out);
 
     assign result = Reg_S;
     assign zero = result ? 1'b0 : 1'b1;

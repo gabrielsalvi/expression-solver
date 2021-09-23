@@ -17,7 +17,11 @@ module control (
     
     always @(posedge clk or posedge rst) 
     begin
-        if (rst) state <= A;
+        if (rst) 
+        begin
+            state <= A;
+            completed <= 1'b0;
+        end
         else begin
             case (state)
                 A : begin
